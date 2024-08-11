@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>Unit Converter</title>
+   
+</head>
+
+
+<body>
+	<h2>Unit Converter</h2>
+	<form>
+		<input type="number" id="from-value" placeholder="From value">
+		<div id="from-unit">
+			<input type="radio" id="temperature-from" name="from-unit" value="temperature" checked>
+			<label for="temperature-from">Temperature</label>
+			<input type="radio" id="speed-from" name="from-unit" value="speed">
+			<label for="speed-from">Speed</label>
+			<input type="radio" id="light-from" name="from-unit" value="light">
+			<label for="light-from">Light</label>
+			<input type="radio" id="weight-from" name="from-unit" value="weight">
+			<label for="weight-from">Weight</label>
+		</div>
+		<input type="number" id="to-value" placeholder="To value" disabled>
+		<div id="to-unit">
+			<input type="radio" id="temperature-to" name="to-unit" value="temperature" checked>
+			<label for="temperature-to">Temperature</label>
+			<input type="radio" id="speed-to" name="to-unit" value="speed">
+			<label for="speed-to">Speed</label>
+			<input type="radio" id="light-to" name="to-unit" value="light">
+			<label for="light-to">Light</label>
+			<input type="radio" id="weight-to" name="to-unit" value="weight">
+			<label for="weight-to">Weight</label>
+		</div>
+		<button onclick="switchUnits()">Switch</button>
+		<button onclick="convertUnits()">Convert</button>
+		<div id="result"></div>
+	</form>
+
+	<script>
+		let fromUnitType = 'temperature';
+		let toUnitType = 'temperature';
+
+		document.querySelectorAll('input[name="from-unit"]').forEach(function(radio) {
+			radio.addEventListener('change', function() {
+				fromUnitType = this.value;
+			});
+		});
+
+		document.querySelectorAll('input[name="to-unit"]').forEach(function(radio) {
+			radio.addEventListener('change', function() {
+				toUnitType = this.value;
+			});
+		});
+
+		function switchUnits() {
+			let temp = fromUnitType;
+			fromUnitType = toUnitType;
+			toUnitType = temp;
+
+			document.querySelector(`input[name="from-unit"][value="${fromUnitType}"]`).checked = true;
+			document.querySelector(`input[name="to-unit"][value="${toUnitType}"]`).checked = true;
+		}
+
+		function convertUnits() {
+			let fromValue = parseFloat(document.getElementById('from-value').value);
+			let toValue = 0;
+
+			// Add conversion logic here
+
+			document.getElementById('result').innerHTML = `Result: ${toValue}`;
+		}
+	</script>
+</body>
+</html>
+```
+
+This revised code uses radio buttons for the unit selection and adds a result div to display the converted value. The switch button now correctly switches the from and to units. Please note that you will need to add the conversion logic in the `convertUnits` function.
